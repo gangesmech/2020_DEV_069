@@ -1,10 +1,12 @@
 package com.kata.game.tictactoe;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Board {
 
@@ -46,8 +48,17 @@ public class Board {
 	}
 
 	public boolean hasWon() {
-		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;		
-		return cells.stream().filter(rowMatch).allMatch(e -> e.getMark() == currentPlayer);
+		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;
+		Predicate<Cell> columnMatch = cell -> cell.getColumn() == columnSelected;
+		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch);
+		Iterator<Predicate<Cell>> iterator = predicates.iterator();
+		while (iterator.hasNext()) {
+			boolean hasWon = cells.stream().filter(iterator.next()).allMatch(e -> e.getMark() == currentPlayer);
+			if (hasWon) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	
