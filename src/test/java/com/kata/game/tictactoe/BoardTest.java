@@ -18,4 +18,10 @@ public class BoardTest {
         assertEquals(true, board.update(1, 1, Mark.CROSS));
     }
 	
+	@Test
+    public void noUpdateIfPositionAlreadyMarked(){
+		board.update(1, 1, Mark.CROSS);
+        assertEquals(false, board.update(1, 1, Mark.NOUGHT));
+    }
+	
 }
