@@ -38,4 +38,9 @@ public class Board {
 		return false;
 	}
 
+	public boolean hasWon() {		
+		return false;
+	}
+
+	
 }

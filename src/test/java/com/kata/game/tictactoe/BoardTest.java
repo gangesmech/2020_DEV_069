@@ -14,7 +14,7 @@ public class BoardTest {
 	}
 	
 	@Test
-    public void updateIfValidPosition(){		
+    public void updateIfValidPosition(){
         assertEquals(true, board.update(1, 1, Mark.CROSS));
     }
 	
@@ -24,4 +24,15 @@ public class BoardTest {
         assertEquals(false, board.update(1, 1, Mark.NOUGHT));
     }
 	
+	@Test
+    public void playerCrossWonByRowMatch(){
+		board.update(1, 2, Mark.CROSS);
+        assertEquals(true, board.hasWon());
+    }
+		
+	@Test
+    public void playerNoughtWonByRowMatch(){
+		board.update(1, 3, Mark.NOUGHT);
+        assertEquals(true, board.hasWon());
+    }
 }
