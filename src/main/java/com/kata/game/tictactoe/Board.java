@@ -50,7 +50,9 @@ public class Board {
 	public boolean hasWon() {
 		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;
 		Predicate<Cell> columnMatch = cell -> cell.getColumn() == columnSelected;
-		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch);
+		Predicate<Cell> leftToRightDiagonalMatch = cell -> cell.getRow() + cell.getColumn() == BOARD_SIZE + 1;
+
+		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch, leftToRightDiagonalMatch);
 		Iterator<Predicate<Cell>> iterator = predicates.iterator();
 		while (iterator.hasNext()) {
 			boolean hasWon = cells.stream().filter(iterator.next()).allMatch(e -> e.getMark() == currentPlayer);
