@@ -16,7 +16,9 @@ public class BoardTest {
 	
 	@Test
     public void updateIfValidPosition(){
+		
         assertEquals(true, board.update(1, 1, Mark.CROSS));
+        
     }
 	
 	@Test

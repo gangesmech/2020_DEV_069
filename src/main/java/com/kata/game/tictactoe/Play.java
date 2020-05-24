@@ -27,6 +27,10 @@ public class Play {
 		return true;
 	}
 	
+	boolean hasResult() {
+		return false;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}

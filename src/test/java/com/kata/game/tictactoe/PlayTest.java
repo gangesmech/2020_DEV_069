@@ -39,4 +39,33 @@ public class PlayTest {
 		assertEquals(true, play.updateBoard(1, 1, Mark.NOUGHT));
 		
 	}
+	
+	@Test
+    public void matchHasDrawn(){
+		
+		board.getCells().forEach(e -> e.setMark(Mark.CROSS));
+		
+		assertEquals(true, play.hasResult());
+	}
+	
+	@Test
+    public void matchHasResult(){	
+
+		board.update(3, 3, Mark.CROSS);
+		board.update(2, 2, Mark.CROSS);
+		board.update(1, 1, Mark.CROSS);
+		
+		assertEquals(true, play.hasResult());
+		
+	}
+	
+	@Test
+    public void matchIsInProgress(){
+		
+		board.update(2, 2, Mark.CROSS);
+		board.update(2, 3, Mark.NOUGHT);
+		
+		assertEquals(false,play.hasResult());
+		
+	}
 }
