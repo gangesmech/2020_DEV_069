@@ -13,6 +13,10 @@ public class Cell{
 		this.column = column;
 	}
 	
+	public void clear(){
+		mark = Mark.EMPTY;
+	}
+	
 	public Mark getMark() {
 		return mark;
 	}
