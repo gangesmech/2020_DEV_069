@@ -119,7 +119,7 @@ public class BoardTest {
     public void allPositionsMarkedExceptOne(){		
 		
 		board.getCells().forEach(e -> e.setMark(Mark.CROSS));	
-		board.update(1, 1, Mark.EMPTY);
+		board.getCells().stream().findFirst().ifPresent(e -> e.setMark(Mark.EMPTY));
 		
         assertEquals(false, board.hasAllPositionsMarked());
     }
