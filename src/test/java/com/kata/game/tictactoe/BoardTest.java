@@ -65,4 +65,24 @@ public class BoardTest {
 		
         assertEquals(true, board.hasWon());
     }
+	
+	@Test
+    public void playerCrossWonByLeftToRightDiagonalMatch(){
+		
+		board.update(3, 1, Mark.CROSS);
+		board.update(2, 2, Mark.CROSS);
+		board.update(1, 3, Mark.CROSS);
+		
+        assertEquals(true, board.hasWon());
+    }
+		
+	@Test
+    public void playerNoughtWonByLeftToRightDiagonalMatch(){
+		
+		board.update(3, 1, Mark.NOUGHT);
+		board.update(2, 2, Mark.NOUGHT);
+		board.update(1, 3, Mark.NOUGHT);
+		
+        assertEquals(true, board.hasWon());
+    }
 }
