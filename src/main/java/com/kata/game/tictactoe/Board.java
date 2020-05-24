@@ -27,10 +27,7 @@ public class Board {
 		cells.stream().forEach(Cell::clear);
 	}
 
-	public boolean update(int rowSelected, int columnSelected, Mark mark) {
-		if (cells == null || cells.isEmpty()) {
-			this.initialize();			
-		}
+	public boolean update(int rowSelected, int columnSelected, Mark mark) {		
 		Optional<Cell> optionalCell = cells.stream().filter(e -> e.getColumn() == columnSelected && e.getRow() == rowSelected)
 				.findFirst();
 		if (optionalCell.isPresent()) {
@@ -64,5 +61,11 @@ public class Board {
 		return false;
 	}
 
+	public boolean hasAllPositionsMarked() {
+		return false;
+	}
 	
+	public List<Cell> getCells() {
+		return cells;
+	}
 }

@@ -11,6 +11,7 @@ public class BoardTest {
 	@Before
 	public void initialize() {
 		board = new Board();
+		board.initialize();
 	}
 	
 	@Test
@@ -105,4 +106,22 @@ public class BoardTest {
 		
         assertEquals(true, board.hasWon());
     }
+	
+	@Test
+    public void allPositionsMarked(){		
+		
+		board.getCells().forEach(e -> e.setMark(Mark.CROSS));
+		
+        assertEquals(true, board.hasAllPositionsMarked());
+    }
+	
+	@Test
+    public void allPositionsMarkedExceptOne(){		
+		
+		board.getCells().forEach(e -> e.setMark(Mark.CROSS));	
+		board.update(1, 1, Mark.EMPTY);
+		
+        assertEquals(false, board.hasAllPositionsMarked());
+    }
+	
 }
