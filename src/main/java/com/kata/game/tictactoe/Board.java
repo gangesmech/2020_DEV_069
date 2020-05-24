@@ -12,9 +12,7 @@ public class Board {
 
 	private int boardSize;
 	private List<Cell> cells;
-	private int rowSelected;
-	private int columnSelected;
-	private Mark currentPlayer;
+	private Cell cellSelected;
 
 	public void initialize(int boardSize) {
 		this.boardSize = boardSize;
@@ -28,33 +26,30 @@ public class Board {
 		cells.stream().forEach(Cell::clear);
 	}
 
-	public boolean update(int rowSelected, int columnSelected, Mark mark) {		
+	public boolean update(int rowSelected, int columnSelected, Mark mark) {	
 		Optional<Cell> optionalCell = cells.stream().filter(e -> e.getColumn() == columnSelected && e.getRow() == rowSelected)
 				.findFirst();
 		if (optionalCell.isPresent()) {
-			Cell cellToUpdate = optionalCell.get(); 
-			if (Mark.EMPTY != cellToUpdate.getMark()) {
+			cellSelected = optionalCell.get(); 
+			if (Mark.EMPTY != cellSelected.getMark()) {
 				return false;
 			}
-			cellToUpdate.setMark(mark);
-			this.rowSelected = rowSelected;
-			this.columnSelected = columnSelected;
-			this.currentPlayer = mark;
+			cellSelected.setMark(mark);
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasWon() {
-		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;
-		Predicate<Cell> columnMatch = cell -> cell.getColumn() == columnSelected;
+		Predicate<Cell> rowMatch = cell -> cell.getRow() == cellSelected.getRow();
+		Predicate<Cell> columnMatch = cell -> cell.getColumn() == cellSelected.getColumn();
 		Predicate<Cell> leftToRightDiagonalMatch = cell -> cell.getRow() + cell.getColumn() == boardSize + 1;
 		Predicate<Cell> rightToLeftDiagonalMatch = cell -> cell.getRow() == cell.getColumn();
 
 		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch, leftToRightDiagonalMatch, rightToLeftDiagonalMatch);
 		Iterator<Predicate<Cell>> iterator = predicates.iterator();
 		while (iterator.hasNext()) {
-			boolean hasWon = cells.stream().filter(iterator.next()).allMatch(e -> e.getMark() == currentPlayer);
+			boolean hasWon = cells.stream().filter(iterator.next()).allMatch(e -> e.getMark() == cellSelected.getMark());
 			if (hasWon) {
 				return true;
 			}
@@ -70,7 +65,7 @@ public class Board {
 		return cells;
 	}
 	
-	public Mark getCurrentPlayer() {
-		return currentPlayer;
+	public Cell getCellSelected() {
+		return cellSelected;
 	}
 }

@@ -28,7 +28,7 @@ public class Play {
 	
 	boolean hasResult() {
 		if(board.hasWon()) {
-			LOGGER.log(INFO, "Player {0} has won the game !!! ", board.getCurrentPlayer().getLabel());
+			LOGGER.log(INFO, "Player {0} has won the game !!! ", board.getCellSelected().getMark().getLabel());
 			return true;
 		}
 		if(board.hasAllPositionsMarked()) {
