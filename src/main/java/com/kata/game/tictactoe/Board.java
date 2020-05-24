@@ -51,8 +51,9 @@ public class Board {
 		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;
 		Predicate<Cell> columnMatch = cell -> cell.getColumn() == columnSelected;
 		Predicate<Cell> leftToRightDiagonalMatch = cell -> cell.getRow() + cell.getColumn() == BOARD_SIZE + 1;
+		Predicate<Cell> rightToLeftDiagonalMatch = cell -> cell.getRow() == cell.getColumn();
 
-		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch, leftToRightDiagonalMatch);
+		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch, leftToRightDiagonalMatch, rightToLeftDiagonalMatch);
 		Iterator<Predicate<Cell>> iterator = predicates.iterator();
 		while (iterator.hasNext()) {
 			boolean hasWon = cells.stream().filter(iterator.next()).allMatch(e -> e.getMark() == currentPlayer);
