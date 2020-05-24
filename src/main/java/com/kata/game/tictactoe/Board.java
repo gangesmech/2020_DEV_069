@@ -10,16 +10,16 @@ import java.util.stream.Stream;
 
 public class Board {
 
+	private int boardSize;
 	private List<Cell> cells;
-	private static final int BOARD_SIZE = 3;
 	private int rowSelected;
 	private int columnSelected;
 	private Mark currentPlayer;
 
-	public void initialize() {
-		this.cells = new ArrayList<>(BOARD_SIZE * BOARD_SIZE);
-		IntStream.rangeClosed(1, BOARD_SIZE).forEach(
-				row -> IntStream.rangeClosed(1, BOARD_SIZE).forEach(column -> cells.add(new Cell(row, column))));
+	public void initialize(int boardSize) {
+		this.cells = new ArrayList<>(boardSize * boardSize);
+		IntStream.rangeClosed(1, boardSize).forEach(
+				row -> IntStream.rangeClosed(1, boardSize).forEach(column -> cells.add(new Cell(row, column))));
 		this.clean();
 	}
 
@@ -47,7 +47,7 @@ public class Board {
 	public boolean hasWon() {
 		Predicate<Cell> rowMatch = cell -> cell.getRow() == rowSelected;
 		Predicate<Cell> columnMatch = cell -> cell.getColumn() == columnSelected;
-		Predicate<Cell> leftToRightDiagonalMatch = cell -> cell.getRow() + cell.getColumn() == BOARD_SIZE + 1;
+		Predicate<Cell> leftToRightDiagonalMatch = cell -> cell.getRow() + cell.getColumn() == boardSize + 1;
 		Predicate<Cell> rightToLeftDiagonalMatch = cell -> cell.getRow() == cell.getColumn();
 
 		Stream<Predicate<Cell>> predicates = Stream.of(rowMatch, columnMatch, leftToRightDiagonalMatch, rightToLeftDiagonalMatch);

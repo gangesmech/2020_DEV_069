@@ -11,7 +11,7 @@ public class BoardTest {
 	@Before
 	public void initialize() {
 		board = new Board();
-		board.initialize();
+		board.initialize(3);
 	}
 	
 	@Test
