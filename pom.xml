@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.kata.game</groupId>
   <artifactId>tic-tac-toe</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>tic-tac-toe game</name>
   <description>The implementation of tic-tac-toe game, through JAVA programming</description>
   <properties>
