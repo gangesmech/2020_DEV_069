@@ -44,7 +44,10 @@ public class PlayTest {
     public void matchHasDrawn(){
 		
 		board.update(1, 1, Mark.NOUGHT);
-		board.getCells().forEach(e -> e.setMark(Mark.CROSS));
+		board.update(2, 3, Mark.NOUGHT);
+		board.update(2, 2, Mark.NOUGHT);
+		board.update(3, 1, Mark.NOUGHT);
+		board.getCells().stream().filter(e -> e.getMark() == Mark.EMPTY).forEach(e -> e.setMark(Mark.CROSS));
 		
 		assertEquals(true, play.hasResult());
 	}
