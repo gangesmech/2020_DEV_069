@@ -62,7 +62,7 @@ public class Board {
 	}
 
 	public boolean hasAllPositionsMarked() {
-		return false;
+		return cells.stream().noneMatch(cell -> Mark.EMPTY == cell.getMark());
 	}
 	
 	public List<Cell> getCells() {
