@@ -39,10 +39,11 @@ public class PlayTest {
 		assertEquals(true, play.updateBoard(1, 1, Mark.NOUGHT));
 		
 	}
-	
+		
 	@Test
     public void matchHasDrawn(){
 		
+		board.update(1, 1, Mark.NOUGHT);
 		board.getCells().forEach(e -> e.setMark(Mark.CROSS));
 		
 		assertEquals(true, play.hasResult());
@@ -65,7 +66,7 @@ public class PlayTest {
 		board.update(2, 2, Mark.CROSS);
 		board.update(2, 3, Mark.NOUGHT);
 		
-		assertEquals(false,play.hasResult());
+		assertEquals(false, play.hasResult());
 		
 	}
 }

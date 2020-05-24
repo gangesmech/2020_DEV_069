@@ -17,6 +17,7 @@ public class Board {
 	private Mark currentPlayer;
 
 	public void initialize(int boardSize) {
+		this.boardSize = boardSize;
 		this.cells = new ArrayList<>(boardSize * boardSize);
 		IntStream.rangeClosed(1, boardSize).forEach(
 				row -> IntStream.rangeClosed(1, boardSize).forEach(column -> cells.add(new Cell(row, column))));
@@ -67,5 +68,9 @@ public class Board {
 	
 	public List<Cell> getCells() {
 		return cells;
+	}
+	
+	public Mark getCurrentPlayer() {
+		return currentPlayer;
 	}
 }

@@ -1,7 +1,6 @@
 package com.kata.game.tictactoe;
 
 import static java.util.logging.Level.INFO;
-
 import java.util.logging.Logger;
 
 public class Play {	
@@ -28,6 +27,14 @@ public class Play {
 	}
 	
 	boolean hasResult() {
+		if(board.hasWon()) {
+			LOGGER.log(INFO, "Player {0} has won the game !!! ", board.getCurrentPlayer().getLabel());
+			return true;
+		}
+		if(board.hasAllPositionsMarked()) {
+			LOGGER.log(INFO, "The game is draw !!!");
+			return true;
+		}
 		return false;
 	}
 	
