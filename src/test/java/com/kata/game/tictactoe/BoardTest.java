@@ -45,4 +45,24 @@ public class BoardTest {
 		
         assertEquals(true, board.hasWon());
     }
+	
+	@Test
+    public void playerCrossWonByColumnMatch(){
+		
+		board.update(1, 1, Mark.CROSS);
+		board.update(2, 1, Mark.CROSS);
+		board.update(3, 1, Mark.CROSS);
+		
+        assertEquals(true, board.hasWon());
+    }
+		
+	@Test
+    public void playerNoughtWonByColumnMatch(){
+		
+		board.update(1, 2, Mark.NOUGHT);
+		board.update(2, 2, Mark.NOUGHT);
+		board.update(3, 2, Mark.NOUGHT);
+		
+        assertEquals(true, board.hasWon());
+    }
 }
